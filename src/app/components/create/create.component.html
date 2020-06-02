@@ -1,0 +1,60 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Create new contact
+    </mat-panel-title>
+    <mat-panel-description>
+      expand for creation form
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <form class="create-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <table class="create-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="create-full-width">
+        <mat-label>Name</mat-label>
+        <input required name="name" matInput ngModel>
+      </mat-form-field></td>
+      <td><mat-form-field class="create-full-width">
+        <mat-label>Surname</mat-label>
+        <input required name="surname" matInput ngModel>
+      </mat-form-field></td>
+    </tr></table>
+
+    <p>
+      <mat-form-field class="create-full-width">
+        <mat-label>Number</mat-label>
+        <input required name="number" matInput ngModel [pattern]="mobNumberPattern">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="create-full-width">
+        <mat-label>Birthday</mat-label>
+        <input required name="birthday" matInput type="date" ngModel>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="create-full-width">
+        <mat-label>Address</mat-label>
+        <textarea required name="address" matInput placeholder="Ex. 100 Main St" ngModel></textarea>
+      </mat-form-field>
+    </p>
+
+    <table class="create-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="create-full-width">
+        <mat-label>City</mat-label>
+        <input required name="city" matInput placeholder="Ex. San Francisco" ngModel>
+      </mat-form-field></td>
+      <td><mat-form-field class="create-full-width">
+        <mat-label>State</mat-label>
+        <input required name="state" matInput placeholder="Ex. California" ngModel>
+      </mat-form-field></td>
+      <td><mat-form-field class="create-full-width">
+        <mat-label>Postal Code</mat-label>
+        <input required name="zip" matInput #postalCode minlength="5" maxlength="5" placeholder="Ex. 94105" ngModel>
+      </mat-form-field></td>
+    </tr></table>
+    <button type="submit" mat-button>Create</button>
+  </form>
+
+</mat-expansion-panel>

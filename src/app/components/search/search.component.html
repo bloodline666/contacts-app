@@ -1,0 +1,68 @@
+<div class="search-container">
+  <mat-form-field>
+    <mat-label>Name or Surname</mat-label>
+    <input matInput #searchInput>
+  </mat-form-field>
+  <button mat-button (click)="search(searchInput.value)">Search</button>
+  <mat-expansion-panel *ngIf="searchContact !== null">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{searchContact.name + ' ' + searchContact.surname}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Expand for details
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form class="create-form" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+      <table class="create-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="create-full-width">
+          <mat-label>Name</mat-label>
+          <input name="name" matInput ngModel [(ngModel)]="searchContact.name">
+        </mat-form-field></td>
+        <td><mat-form-field class="create-full-width">
+          <mat-label>Surname</mat-label>
+          <input name="surname" matInput ngModel [(ngModel)]="searchContact.surname">
+        </mat-form-field></td>
+      </tr></table>
+
+      <p>
+        <mat-form-field class="create-full-width">
+          <mat-label>Number</mat-label>
+          <input name="number" matInput ngModel [(ngModel)]="searchContact.number">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="create-full-width">
+          <mat-label>Birthday</mat-label>
+          <input name="birthday" matInput type="date" ngModel [(ngModel)]="searchContact.birthday">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="create-full-width">
+          <mat-label>Address</mat-label>
+          <textarea name="address" matInput placeholder="Ex. 100 Main St" ngModel [(ngModel)]="searchContact.address"></textarea>
+        </mat-form-field>
+      </p>
+
+      <table class="create-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="create-full-width">
+          <mat-label>City</mat-label>
+          <input name="city" matInput placeholder="Ex. San Francisco" ngModel [(ngModel)]="searchContact.city">
+        </mat-form-field></td>
+        <td><mat-form-field class="create-full-width">
+          <mat-label>State</mat-label>
+          <input name="state" matInput placeholder="Ex. California" ngModel [(ngModel)]="searchContact.state">
+        </mat-form-field></td>
+        <td><mat-form-field class="create-full-width">
+          <mat-label>Postal Code</mat-label>
+          <input name="zip" matInput #postalCode minlength="5" maxlength="5" placeholder="Ex. 94105" ngModel [(ngModel)]="searchContact.zip">
+        </mat-form-field></td>
+      </tr></table>
+      <button type="submit" mat-button>Save</button>
+      <button mat-button (click)="delete(searchContact._id)">Delete</button>
+    </form>
+
+  </mat-expansion-panel>
+</div>
